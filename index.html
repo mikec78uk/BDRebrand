@@ -1,0 +1,1040 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The New BD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@200;300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --white: #ffffff;
+    --black: #000000;
+    --gray-100: #f5f5f7;
+    --gray-200: #e8e8ed;
+    --gray-400: #86868b;
+    --gray-600: #515154;
+    --gray-800: #1d1d1f;
+    --blue: #0071e3;
+    --blue-light: #2997ff;
+    --blue-dark: #0040dd;
+    --font-display: -apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+    --font-body: -apple-system, 'SF Pro Text', 'DM Sans', 'Helvetica Neue', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 22px;
+    background: rgba(0,0,0,0.72);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    border-bottom: 0.5px solid rgba(255,255,255,0.12);
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 18px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 12px;
+    color: rgba(255,255,255,0.72);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* SECTIONS */
+  section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* HERO */
+  #hero {
+    background: var(--black);
+    text-align: center;
+    padding: 120px 24px 80px;
+  }
+  .hero-eyebrow {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.8s ease 0.2s forwards;
+  }
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 96px);
+    font-weight: 200;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    margin-bottom: 24px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeUp 0.9s ease 0.4s forwards;
+  }
+  .hero-headline em {
+    font-style: normal;
+    background: linear-gradient(135deg, #2997ff 0%, #ffffff 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-sub {
+    font-size: clamp(17px, 2vw, 21px);
+    font-weight: 300;
+    color: var(--gray-400);
+    max-width: 600px;
+    line-height: 1.6;
+    margin: 0 auto 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUp 0.9s ease 0.6s forwards;
+  }
+  .hero-cta {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 17px;
+    font-weight: 400;
+    padding: 12px 28px;
+    border-radius: 980px;
+    text-decoration: none;
+    transition: background 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 0.8s forwards;
+  }
+  .hero-cta:hover { background: var(--blue-dark); }
+
+  .hero-stats {
+    display: flex;
+    gap: 48px;
+    justify-content: center;
+    margin-top: 80px;
+    opacity: 0;
+    animation: fadeUp 0.9s ease 1s forwards;
+  }
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 40px;
+    font-weight: 200;
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+  .hero-stat-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    margin-top: 4px;
+    max-width: 120px;
+    line-height: 1.4;
+  }
+
+  .hero-scroll-hint {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s ease 1.4s forwards;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  .scroll-text { font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-400); }
+
+  /* SHIFT SECTION */
+  #shift {
+    background: var(--gray-100);
+    color: var(--gray-800);
+    padding: 120px 24px;
+    min-height: auto;
+  }
+  .shift-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .shift-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .shift-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    text-align: center;
+    margin-bottom: 80px;
+    line-height: 1.1;
+  }
+  .shift-timeline {
+    position: relative;
+    padding-left: 0;
+  }
+  .shift-line-track {
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--gray-200);
+    transform: translateX(-50%);
+  }
+  .shift-line-fill {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 1px;
+    background: var(--blue);
+    transform: translateX(-50%);
+    height: 0;
+    transition: height 0.4s ease;
+  }
+  .tl-row {
+    display: grid;
+    grid-template-columns: 1fr 48px 1fr;
+    gap: 0;
+    margin-bottom: 64px;
+    align-items: center;
+  }
+  .tl-row:last-child { margin-bottom: 0; }
+  .tl-row-left { text-align: right; padding-right: 32px; }
+  .tl-row-right { padding-left: 32px; }
+  .tl-row-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+  }
+  .tl-node {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--gray-200);
+    border: 2px solid var(--gray-200);
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .tl-node.active { background: var(--blue); border-color: var(--blue); }
+  .tl-year {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+  .tl-card-title {
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--gray-800);
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+  .tl-card-body {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.6;
+  }
+  .tl-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 980px;
+    margin-top: 10px;
+  }
+  .tl-tag.old { background: var(--gray-200); color: var(--gray-600); }
+  .tl-tag.new { background: #e8f1ff; color: var(--blue-dark); }
+
+  /* PARALLAX DIVIDER */
+  .parallax-band {
+    width: 100%;
+    height: 60vh;
+    min-height: 320px;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .parallax-band-inner {
+    text-align: center;
+    will-change: transform;
+  }
+  .parallax-band-text {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 8vw, 110px);
+    font-weight: 200;
+    letter-spacing: -0.03em;
+    color: rgba(255,255,255,0.06);
+    white-space: nowrap;
+    line-height: 1;
+    user-select: none;
+  }
+  .parallax-band-text.mid {
+    color: rgba(255,255,255,0.12);
+    font-size: clamp(32px, 5vw, 72px);
+    margin: 16px 0;
+  }
+  .parallax-band-headline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 200;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    text-align: center;
+    width: 100%;
+    padding: 0 24px;
+    line-height: 1.2;
+  }
+  .parallax-band-headline span { color: var(--blue-light); }
+
+  /* SEGMENTS */
+  #segments {
+    background: var(--black);
+    padding: 120px 24px;
+    min-height: auto;
+  }
+  .seg-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .seg-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue-light);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+  .seg-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: var(--white);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.1;
+  }
+  .seg-subtitle {
+    font-size: 17px;
+    color: var(--gray-400);
+    text-align: center;
+    max-width: 520px;
+    margin: 0 auto 64px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .seg-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin-bottom: 48px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 980px;
+    padding: 4px;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .seg-tab {
+    font-size: 13px;
+    font-weight: 400;
+    padding: 8px 20px;
+    border-radius: 980px;
+    cursor: pointer;
+    color: var(--gray-400);
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    white-space: nowrap;
+  }
+  .seg-tab.active {
+    background: var(--white);
+    color: var(--black);
+  }
+  .seg-tab:hover:not(.active) { color: var(--white); }
+
+  .seg-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+  }
+  .seg-content.active { display: block; }
+
+  .seg-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .seg-panel-left {
+    background: var(--black);
+    padding: 48px;
+  }
+  .seg-panel-right {
+    background: #0a0a0a;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .seg-panel-name {
+    font-family: var(--font-display);
+    font-size: 42px;
+    font-weight: 200;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+  }
+  .seg-panel-tagline {
+    font-size: 15px;
+    color: var(--gray-400);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    font-weight: 300;
+  }
+  .seg-why-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 8px;
+  }
+  .seg-why-text {
+    font-size: 14px;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.7;
+  }
+  .seg-metric {
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 20px 22px;
+  }
+  .seg-metric-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 200;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    margin-bottom: 4px;
+  }
+  .seg-metric-label {
+    font-size: 12px;
+    color: var(--gray-400);
+    line-height: 1.4;
+  }
+  .seg-products-wrap {
+    grid-column: 1 / -1;
+    background: #0d0d0d;
+    padding: 32px 48px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .seg-products-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+  .seg-products-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+  .seg-product-chip {
+    background: rgba(255,255,255,0.04);
+    border: 0.5px solid rgba(255,255,255,0.08);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .seg-product-name { font-size: 13px; color: var(--white); margin-bottom: 3px; }
+  .seg-product-sub { font-size: 11px; color: var(--gray-400); }
+
+  .seg-flag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 980px;
+    background: rgba(186,117,23,0.15);
+    color: #EF9F27;
+    border: 0.5px solid rgba(186,117,23,0.3);
+    margin-top: 16px;
+  }
+
+  /* VALUES */
+  #values {
+    background: var(--gray-100);
+    color: var(--gray-800);
+    padding: 120px 24px;
+    min-height: auto;
+  }
+  .val-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  .val-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .val-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 200;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    margin-bottom: 64px;
+    line-height: 1.1;
+  }
+  .val-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-200);
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .val-card {
+    background: var(--gray-100);
+    padding: 40px 36px;
+    text-align: left;
+  }
+  .val-num {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .val-card-name {
+    font-family: var(--font-display);
+    font-size: 28px;
+    font-weight: 200;
+    color: var(--gray-800);
+    letter-spacing: -0.01em;
+    margin-bottom: 12px;
+  }
+  .val-card-body {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 0.5px solid rgba(255,255,255,0.1);
+    padding: 48px 44px 40px;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 32px;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: var(--white);
+  }
+  .footer-tagline {
+    font-size: 13px;
+    color: var(--gray-400);
+    margin-top: 6px;
+  }
+  .footer-links-group {
+    display: flex;
+    gap: 48px;
+  }
+  .footer-links-col { display: flex; flex-direction: column; gap: 10px; }
+  .footer-link-label { font-size: 12px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .footer-link {
+    font-size: 12px;
+    color: var(--gray-400);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--white); }
+  .footer-bottom {
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    font-size: 12px;
+    color: var(--gray-400);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">BD</div>
+  <ul class="nav-links">
+    <li><a href="#shift">Our story</a></li>
+    <li><a href="#segments">Segments</a></li>
+    <li><a href="#values">Values</a></li>
+    <li><a href="#">Investors</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-eyebrow">Introducing the new BD</div>
+  <h1 class="hero-headline">Focused.<br><em>Sharper.</em><br>Built for what's next.</h1>
+  <p class="hero-sub">BD is evolving. As a pure-play medical technology company, we're directing everything we have toward the devices, systems, and innovations that shape the future of patient care.</p>
+  <a href="#shift" class="hero-cta">Explore the new BD</a>
+
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">125+</div>
+      <div class="hero-stat-label">Years advancing global health</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">4</div>
+      <div class="hero-stat-label">Focused medtech segments</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">#1</div>
+      <div class="hero-stat-label">US medical device manufacturer</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">~$22B</div>
+      <div class="hero-stat-label">Revenue, fiscal year 2025</div>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- STRATEGIC SHIFT -->
+<section id="shift" style="min-height:auto; padding: 120px 24px; background: var(--gray-100); color: var(--gray-800);">
+  <div class="shift-inner">
+    <div class="shift-label reveal">The strategic shift</div>
+    <h2 class="shift-title reveal reveal-delay-1">From broad portfolio<br>to pure-play medtech</h2>
+
+    <div class="shift-timeline">
+      <div class="shift-line-track"></div>
+      <div class="shift-line-fill" id="timelineFill"></div>
+
+      <div class="tl-row reveal">
+        <div class="tl-row-left">
+          <div class="tl-year">2015–2017</div>
+          <div class="tl-card-title">Major acquisitions establish BD's scale</div>
+          <div class="tl-card-body">CareFusion ($12.2B) and C.R. Bard ($24B) make BD a global medtech giant — with leading positions in infusion, medication management, and interventional surgery. Significant scale. Significant complexity.</div>
+          <span class="tl-tag old">Broad scope</span>
+        </div>
+        <div class="tl-row-center"><div class="tl-node active" id="node-0"></div></div>
+        <div class="tl-row-right"></div>
+      </div>
+
+      <div class="tl-row reveal reveal-delay-1">
+        <div class="tl-row-left"></div>
+        <div class="tl-row-center"><div class="tl-node active" id="node-1"></div></div>
+        <div class="tl-row-right">
+          <div class="tl-year">2020</div>
+          <div class="tl-card-title">BD 2025 strategy: Grow, Simplify, Empower</div>
+          <div class="tl-card-body">CEO Tom Polen launches a deliberate simplification programme. Focus investment on higher-growth markets. Reduce complexity. Divest diabetes care. Position the company for durable performance.</div>
+          <span class="tl-tag old">Simplification begins</span>
+        </div>
+      </div>
+
+      <div class="tl-row reveal reveal-delay-1">
+        <div class="tl-row-left">
+          <div class="tl-year">February 2025</div>
+          <div class="tl-card-title">Biosciences and diagnostics separation announced</div>
+          <div class="tl-card-body">BD's board unanimously authorises the separation of its Biosciences and Diagnostic Solutions business. Two focused companies, each better positioned to lead in their sector, will outperform one complex organisation serving divergent markets.</div>
+          <span class="tl-tag old">Two companies announced</span>
+        </div>
+        <div class="tl-row-center"><div class="tl-node active" id="node-2"></div></div>
+        <div class="tl-row-right"></div>
+      </div>
+
+      <div class="tl-row reveal reveal-delay-2">
+        <div class="tl-row-left"></div>
+        <div class="tl-row-center"><div class="tl-node active" id="node-3" style="background: var(--blue-dark); border-color: var(--blue); box-shadow: 0 0 0 4px rgba(41,151,255,0.2);"></div></div>
+        <div class="tl-row-right">
+          <div class="tl-year">2026 — Now</div>
+          <div class="tl-card-title">The new BD: pure-play medtech</div>
+          <div class="tl-card-body">The separation is complete. BD is now a focused, pure-play medical technology company — structured around four clear segments, investing concentrated capital in high-growth medtech, and built on a model where installed devices drive high-margin recurring revenue.</div>
+          <span class="tl-tag new">New BD</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX BAND -->
+<div class="parallax-band" id="parallaxBand">
+  <div class="parallax-band-inner" id="parallaxInner">
+    <div class="parallax-band-text">MEDICAL ESSENTIALS</div>
+    <div class="parallax-band-text mid">CONNECTED CARE · INTERVENTIONAL</div>
+    <div class="parallax-band-text">BIOPHARMA SYSTEMS</div>
+  </div>
+  <div class="parallax-band-headline">Four segments.<br><span>One direction.</span></div>
+</div>
+
+<!-- SEGMENTS -->
+<section id="segments" style="min-height:auto; background: var(--black); padding: 120px 24px;">
+  <div class="seg-inner">
+    <div class="seg-label reveal">How we're structured</div>
+    <h2 class="seg-title reveal reveal-delay-1">Our four segments</h2>
+    <p class="seg-subtitle reveal reveal-delay-2">Each addresses a distinct and growing need in healthcare delivery. Together they define the new BD.</p>
+
+    <div class="seg-tabs reveal reveal-delay-2">
+      <button class="seg-tab active" onclick="showSeg(0,this)">Medical essentials</button>
+      <button class="seg-tab" onclick="showSeg(1,this)">Connected care</button>
+      <button class="seg-tab" onclick="showSeg(2,this)">BioPharma systems</button>
+      <button class="seg-tab" onclick="showSeg(3,this)">Interventional</button>
+    </div>
+
+    <div class="seg-content active" id="seg-0">
+      <div class="seg-panel-grid">
+        <div class="seg-panel-left">
+          <div class="seg-panel-name">Medical<br>essentials</div>
+          <div class="seg-panel-tagline">The foundational tools of modern medicine — present at virtually every point of patient contact, globally.</div>
+          <div class="seg-why-label">Why this segment matters</div>
+          <div class="seg-why-text">Demand is structurally driven by ageing populations and expanding hospital infrastructure. BD's scale in vascular access and IV delivery is unmatched — these aren't discretionary purchases. They're the baseline of clinical care, everywhere, every day.</div>
+        </div>
+        <div class="seg-panel-right">
+          <div class="seg-metric">
+            <div class="seg-metric-num">~Every hospital</div>
+            <div class="seg-metric-label">Global clinical reach of BD's core products</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Recurring</div>
+            <div class="seg-metric-label">Consumable model drives predictable revenue streams</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Structural</div>
+            <div class="seg-metric-label">Ageing populations create sustained long-term demand</div>
+          </div>
+        </div>
+        <div class="seg-products-wrap">
+          <div class="seg-products-label">Key products</div>
+          <div class="seg-products-grid">
+            <div class="seg-product-chip"><div class="seg-product-name">IV catheters</div><div class="seg-product-sub">Vascular access</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Hypodermic needles</div><div class="seg-product-sub">Injection systems</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">BD Vacutainer™</div><div class="seg-product-sub">Blood collection</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Specimen collection</div><div class="seg-product-sub">Diagnostics support</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seg-content" id="seg-1">
+      <div class="seg-panel-grid">
+        <div class="seg-panel-left">
+          <div class="seg-panel-name">Connected<br>care</div>
+          <div class="seg-panel-tagline">AI-powered monitoring and digital health systems that reduce clinical burden and improve patient outcomes.</div>
+          <div class="seg-why-label">Why this segment matters</div>
+          <div class="seg-why-text">Chronic nursing shortages are forcing hospitals to do more with less. BD's connected care systems — including AI-driven patient instability prediction — are increasingly mission-critical for understaffed wards. This is BD's highest-growth segment, driven by a structural need that isn't going away.</div>
+        </div>
+        <div class="seg-panel-right">
+          <div class="seg-metric">
+            <div class="seg-metric-num">AI-first</div>
+            <div class="seg-metric-label">Predictive monitoring reduces adverse patient events</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Highest growth</div>
+            <div class="seg-metric-label">Fastest-growing segment in the new BD portfolio</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Critical</div>
+            <div class="seg-metric-label">Addresses acute nursing and staffing shortages globally</div>
+          </div>
+        </div>
+        <div class="seg-products-wrap">
+          <div class="seg-products-label">Key products</div>
+          <div class="seg-products-grid">
+            <div class="seg-product-chip"><div class="seg-product-name">BD Alaris™</div><div class="seg-product-sub">Infusion management</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Pyxis™ MedStation</div><div class="seg-product-sub">Medication dispensing</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">HemoSphere Alta™</div><div class="seg-product-sub">Hemodynamic monitoring</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Acumen IQ™</div><div class="seg-product-sub">Sensor analytics</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seg-content" id="seg-2">
+      <div class="seg-panel-grid">
+        <div class="seg-panel-left">
+          <div class="seg-panel-name">BioPharma<br>systems</div>
+          <div class="seg-panel-tagline">Precision delivery systems for biologics and next-generation therapies — including the GLP-1 wave.</div>
+          <div class="seg-why-label">Why this segment matters</div>
+          <div class="seg-why-text">The explosion in biologic drugs — and GLP-1 adoption in particular — has created enormous demand for high-precision delivery mechanisms. BD's prefillable syringe systems are a direct beneficiary, backed by $110M in US manufacturing investment in 2025.</div>
+        </div>
+        <div class="seg-panel-right">
+          <div class="seg-metric">
+            <div class="seg-metric-num">GLP-1 boom</div>
+            <div class="seg-metric-label">Major structural tailwind in drug delivery systems</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">$110M</div>
+            <div class="seg-metric-label">US manufacturing investment committed in 2025</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Biologics</div>
+            <div class="seg-metric-label">High-precision delivery for next-generation therapies</div>
+          </div>
+        </div>
+        <div class="seg-products-wrap">
+          <div class="seg-products-label">Key products</div>
+          <div class="seg-products-grid">
+            <div class="seg-product-chip"><div class="seg-product-name">Prefillable syringes</div><div class="seg-product-sub">Biologic delivery</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Drug delivery pens</div><div class="seg-product-sub">GLP-1 & injectables</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Filling systems</div><div class="seg-product-sub">Pharma manufacturing</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Containment systems</div><div class="seg-product-sub">Sterile packaging</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="seg-content" id="seg-3">
+      <div class="seg-panel-grid">
+        <div class="seg-panel-left">
+          <div class="seg-panel-name">Interventional</div>
+          <div class="seg-panel-tagline">Surgical and peripheral devices for high-acuity procedures across oncology, urology, and vascular care.</div>
+          <div class="seg-why-label">Why this segment matters</div>
+          <div class="seg-why-text">The C.R. Bard acquisition established BD as a leader in complex, high-value surgical care. Clinical outcomes in these procedures depend directly on device precision — making this a defensible, recurring-revenue position that competitors can't easily replicate.</div>
+        </div>
+        <div class="seg-panel-right">
+          <div class="seg-metric">
+            <div class="seg-metric-num">High-acuity</div>
+            <div class="seg-metric-label">Devices used in the most complex clinical procedures</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Double-digit</div>
+            <div class="seg-metric-label">UCC revenue growth, fiscal year 2025</div>
+          </div>
+          <div class="seg-metric">
+            <div class="seg-metric-num">Defensible</div>
+            <div class="seg-metric-label">High switching costs protect market position long-term</div>
+          </div>
+        </div>
+        <div class="seg-products-wrap">
+          <div class="seg-products-label">Key products</div>
+          <div class="seg-products-grid">
+            <div class="seg-product-chip"><div class="seg-product-name">Surgical devices</div><div class="seg-product-sub">Oncology & soft tissue</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Peripheral intervention</div><div class="seg-product-sub">Vascular access</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">Urology systems</div><div class="seg-product-sub">Critical care</div></div>
+            <div class="seg-product-chip"><div class="seg-product-name">C.R. Bard range</div><div class="seg-product-sub">Legacy interventional</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PARALLAX BAND 2 -->
+<div class="parallax-band" id="parallaxBand2" style="background:#0a0a0f;">
+  <div class="parallax-band-inner" id="parallaxInner2">
+    <div class="parallax-band-text">PRECISION · PARTNERSHIP · PROGRESS</div>
+    <div class="parallax-band-text mid" style="color:rgba(41,151,255,0.15);">THE NEW BD</div>
+    <div class="parallax-band-text">ADVANCING THE WORLD OF HEALTH</div>
+  </div>
+  <div class="parallax-band-headline" style="font-size: clamp(24px,3.5vw,44px);">What drives us,<br><span>every day.</span></div>
+</div>
+
+<!-- VALUES -->
+<section id="values" style="min-height:auto; background: var(--gray-100); color: var(--gray-800); padding: 120px 24px;">
+  <div class="val-inner">
+    <div class="val-label reveal">What drives us</div>
+    <h2 class="val-title reveal reveal-delay-1">Our commitments</h2>
+    <div class="val-grid reveal reveal-delay-2">
+      <div class="val-card">
+        <div class="val-num">01</div>
+        <div class="val-card-name">Precision</div>
+        <div class="val-card-body">We hold ourselves to exacting standards — in manufacturing, in innovation, and in how we show up for the clinicians who depend on our products every day.</div>
+      </div>
+      <div class="val-card">
+        <div class="val-num">02</div>
+        <div class="val-card-name">Partnership</div>
+        <div class="val-card-body">Healthcare is a team sport. We work alongside hospital systems, care teams, and distribution partners as a genuine long-term collaborator — not a supplier.</div>
+      </div>
+      <div class="val-card">
+        <div class="val-num">03</div>
+        <div class="val-card-name">Progress</div>
+        <div class="val-card-body">Focused investment in R&D and disciplined capital allocation so that BD continues to lead — not follow — in the markets that matter most.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">BD</div>
+      <div class="footer-tagline">Advancing the world of health</div>
+    </div>
+    <div class="footer-links-group">
+      <div class="footer-links-col">
+        <div class="footer-link-label">Company</div>
+        <a class="footer-link" href="#">About BD</a>
+        <a class="footer-link" href="#">Our strategy</a>
+        <a class="footer-link" href="#">Leadership</a>
+      </div>
+      <div class="footer-links-col">
+        <div class="footer-link-label">Investors</div>
+        <a class="footer-link" href="#">IR overview</a>
+        <a class="footer-link" href="#">Newsroom</a>
+        <a class="footer-link" href="#">SEC filings</a>
+      </div>
+      <div class="footer-links-col">
+        <div class="footer-link-label">Connect</div>
+        <a class="footer-link" href="#">LinkedIn</a>
+        <a class="footer-link" href="#">bd.com</a>
+        <a class="footer-link" href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Becton, Dickinson and Company. All rights reserved.</span>
+    <span>NYSE: BDX</span>
+  </div>
+</footer>
+
+<script>
+  function showSeg(idx, btn) {
+    document.querySelectorAll('.seg-content').forEach(function(el){ el.classList.remove('active'); });
+    document.querySelectorAll('.seg-tab').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById('seg-'+idx).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  var observer = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(function(el){ observer.observe(el); });
+
+  window.addEventListener('scroll', function(){
+    var scrollY = window.scrollY;
+
+    var p1 = document.getElementById('parallaxInner');
+    if(p1){
+      var band1 = document.getElementById('parallaxBand');
+      var rect1 = band1.getBoundingClientRect();
+      var offset1 = (rect1.top + rect1.height/2 - window.innerHeight/2) * 0.25;
+      p1.style.transform = 'translateY('+offset1+'px)';
+    }
+
+    var p2 = document.getElementById('parallaxInner2');
+    if(p2){
+      var band2 = document.getElementById('parallaxBand2');
+      var rect2 = band2.getBoundingClientRect();
+      var offset2 = (rect2.top + rect2.height/2 - window.innerHeight/2) * 0.25;
+      p2.style.transform = 'translateY('+offset2+'px)';
+    }
+  });
+</script>
+</body>
+</html>
