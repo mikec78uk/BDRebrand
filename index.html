@@ -737,9 +737,140 @@
   .reveal-delay-1 { transition-delay: 0.1s; }
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* ============================================
+     WIREFRAME / PROTOTYPE MODE
+     ============================================ */
+
+  .proto-banner {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    background: #222;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px 0;
+    border-bottom: 1.5px dashed rgba(255,255,255,0.3);
+  }
+  .proto-banner span { color: #aaa; margin: 0 12px; }
+
+  /* Push nav below banner */
+  nav { top: 33px !important; }
+  section#hero { padding-top: 154px !important; }
+
+  /* Grayscale token overrides */
+  :root {
+    --blue:       #555;
+    --blue-light: #777;
+    --blue-dark:  #333;
+    --gray-100:   #efefef;
+    --gray-200:   #d8d8d8;
+    --gray-400:   #888;
+    --gray-600:   #555;
+    --gray-800:   #222;
+  }
+
+  /* Global */
+  body { background: #efefef !important; color: #222 !important; }
+
+  /* Nav */
+  nav {
+    background: rgba(255,255,255,0.95) !important;
+    border-bottom: 1px dashed #bbb !important;
+  }
+  .nav-logo, .nav-links a { color: #333 !important; }
+
+  /* Hero */
+  #hero { background: #fff !important; border-bottom: 1px dashed #ccc; }
+  .hero-headline { color: #222 !important; }
+  .hero-headline em {
+    background: none !important;
+    -webkit-text-fill-color: #555 !important;
+  }
+  .hero-sub, .hero-stat-label, .scroll-text { color: #777 !important; }
+  .hero-stat-num { color: #222 !important; }
+  .scroll-line { background: linear-gradient(to bottom, rgba(0,0,0,0.25), transparent) !important; }
+
+  /* CTA — outlined dashed */
+  .hero-cta {
+    background: transparent !important;
+    color: #333 !important;
+    border: 1.5px dashed #555 !important;
+  }
+  .hero-cta:hover { background: #efefef !important; }
+
+  /* Parallax bands → flat bordered boxes */
+  .parallax-band {
+    background: #e4e4e4 !important;
+    border-top: 1px dashed #bbb !important;
+    border-bottom: 1px dashed #bbb !important;
+  }
+  .parallax-band-text { color: rgba(0,0,0,0.07) !important; }
+  .parallax-band-text.mid { color: rgba(0,0,0,0.07) !important; }
+  .parallax-band-headline { color: #333 !important; }
+  .parallax-band-headline span { color: #555 !important; }
+
+  /* Shift / timeline */
+  #shift { background: #efefef !important; color: #222 !important; }
+  .shift-label { color: #666 !important; }
+  .tl-year { color: #666 !important; }
+  .tl-card-title { color: #222 !important; }
+  .tl-card-body { color: #555 !important; }
+  .tl-node { background: #d0d0d0 !important; border-color: #d0d0d0 !important; box-shadow: none !important; }
+  .tl-node.active { background: #555 !important; border-color: #555 !important; box-shadow: none !important; }
+  .shift-line-fill { background: #555 !important; }
+  .tl-tag.old { background: #ddd !important; color: #555 !important; }
+  .tl-tag.new { background: #ddd !important; color: #333 !important; }
+
+  /* Segments */
+  #segments { background: #fff !important; }
+  .seg-title, .seg-label { color: #222 !important; }
+  .seg-subtitle { color: #666 !important; }
+  .seg-tabs { background: rgba(0,0,0,0.06) !important; }
+  .seg-tab { color: #666 !important; }
+  .seg-tab.active { background: #333 !important; color: #fff !important; }
+  .seg-panel-grid { background: #ccc !important; border: 1px dashed #aaa; border-radius: 16px; }
+  .seg-panel-left { background: #fff !important; }
+  .seg-panel-right { background: #f5f5f5 !important; }
+  .seg-panel-name { color: #222 !important; }
+  .seg-panel-tagline, .seg-why-text { color: #555 !important; }
+  .seg-why-label { color: #888 !important; }
+  .seg-metric { background: rgba(0,0,0,0.03) !important; border: 1px dashed #bbb !important; }
+  .seg-metric-num { color: #222 !important; }
+  .seg-metric-label { color: #666 !important; }
+  .seg-products-wrap { background: #f0f0f0 !important; border-top: 1px dashed #ccc !important; }
+  .seg-product-chip { background: #fff !important; border: 1px dashed #bbb !important; }
+  .seg-product-name { color: #333 !important; }
+  .seg-product-sub { color: #888 !important; }
+  .seg-products-label { color: #666 !important; }
+
+  /* Identity — already light, minor tweaks */
+  #identity { border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc; }
+  .identity-rule { background: #555 !important; }
+
+  /* Values */
+  #values { background: #efefef !important; }
+  .val-grid { background: #ccc !important; border: 1px dashed #aaa; border-radius: 16px; }
+  .val-card { background: #efefef !important; }
+  .val-num { color: #aaa !important; }
+  .val-card-name { color: #222 !important; }
+  .val-card-body { color: #555 !important; }
+
+  /* Footer */
+  footer { background: #fff !important; border-top: 1px dashed #bbb !important; }
+  .footer-logo { color: #333 !important; }
+  .footer-tagline, .footer-link { color: #666 !important; }
+  .footer-link-label { color: #333 !important; }
+  .footer-bottom { border-top-color: rgba(0,0,0,0.1) !important; color: #888 !important; }
 </style>
 </head>
 <body>
+
+<div class="proto-banner">Prototype <span>·</span> Not for distribution <span>·</span> Indicative design only</div>
 
 <nav>
   <div class="nav-logo">BD</div>
