@@ -1207,22 +1207,116 @@
   .footer-tagline, .footer-link { color: #666 !important; }
   .footer-link-label { color: #333 !important; }
   .footer-bottom { border-top-color: rgba(0,0,0,0.1) !important; color: #888 !important; }
+  /* PASSWORD GATE */
+  #password-gate {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: #f0efe9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 24px;
+  }
+  #password-gate .gate-logo {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    color: #222;
+    margin-bottom: 8px;
+  }
+  #password-gate .gate-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #888;
+  }
+  #password-gate .gate-input {
+    font-family: var(--font-body);
+    font-size: 15px;
+    font-weight: 300;
+    padding: 12px 20px;
+    border: 1.5px dashed #aaa;
+    background: #fff;
+    color: #222;
+    outline: none;
+    width: 280px;
+    text-align: center;
+    border-radius: 0;
+  }
+  #password-gate .gate-input:focus { border-color: #555; }
+  #password-gate .gate-btn {
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: #222;
+    color: #fff;
+    border: none;
+    padding: 12px 32px;
+    cursor: pointer;
+    width: 280px;
+    transition: background 0.2s;
+  }
+  #password-gate .gate-btn:hover { background: #000; }
+  #password-gate .gate-error {
+    font-size: 12px;
+    color: #c0392b;
+    letter-spacing: 0.05em;
+    height: 16px;
+  }
+  body.locked { overflow: hidden; }
 </style>
 </head>
-<body>
+<body class="locked">
 
-<nav>
-  <div class="nav-logo">BD</div>
-  <ul class="nav-links">
-    <li><a href="#problem">The challenge</a></li>
-    <li><a href="#shift">Our story</a></li>
-    <li><a href="#segments">Segments</a></li>
-    <li><a href="#proof">At scale</a></li>
-    <li><a href="#audience">For you</a></li>
-    <li><a href="#values">Values</a></li>
-    <li><a href="#cta">Contact</a></li>
-  </ul>
-</nav>
+<div id="password-gate">
+  <div class="gate-logo">BD</div>
+  <div class="gate-label">Protected preview</div>
+  <input class="gate-input" id="gate-input" type="password" placeholder="Enter password" />
+  <button class="gate-btn" onclick="checkPassword()">Access</button>
+  <div class="gate-error" id="gate-error"></div>
+</div>
+
+<script>
+  (function() {
+    if (sessionStorage.getItem('bd_auth') === 'true') {
+      document.addEventListener('DOMContentLoaded', function() {
+        var gate = document.getElementById('password-gate');
+        if (gate) gate.style.display = 'none';
+        document.body.classList.remove('locked');
+      });
+    }
+  })();
+
+  function checkPassword() {
+    var val = document.getElementById('gate-input').value;
+    if (val === 'BDRebrand2026VML') {
+      sessionStorage.setItem('bd_auth', 'true');
+      document.getElementById('password-gate').style.display = 'none';
+      document.body.classList.remove('locked');
+    } else {
+      document.getElementById('gate-error').textContent = 'Incorrect password. Please try again.';
+      document.getElementById('gate-input').value = '';
+      document.getElementById('gate-input').focus();
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var input = document.getElementById('gate-input');
+    if (input) {
+      input.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') checkPassword();
+      });
+      input.focus();
+    }
+  });
+</script>
+
 
 <!-- HERO -->
 <section id="hero">
