@@ -756,6 +756,323 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
 
+  /* HERO FILM PLACEHOLDER */
+  .hero-film-placeholder {
+    margin: 40px auto 0;
+    width: 100%;
+    max-width: 720px;
+    aspect-ratio: 16/9;
+    border: 1.5px dashed #555;
+    background: rgba(255,255,255,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 4px;
+  }
+  .hero-film-icon { font-size: 28px; opacity: 0.3; }
+  .hero-film-label { font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+  .hero-film-sub { font-size: 11px; color: rgba(255,255,255,0.25); letter-spacing: 0.05em; }
+
+  /* PROBLEM SPACE */
+  .problem-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .problem-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .problem-headline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+  .problem-intro {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--gray-600);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+  }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px dashed #bbb;
+  }
+  .problem-card {
+    background: #fff;
+    padding: 36px 32px;
+  }
+  .problem-card-num {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: var(--gray-400);
+    margin-bottom: 16px;
+  }
+  .problem-card-title {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--gray-800);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .problem-card-body {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* PROOF POINTS */
+  .proof-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .proof-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .proof-headline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    margin-bottom: 56px;
+    line-height: 1.15;
+  }
+  .proof-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1px;
+    background: var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px dashed #bbb;
+  }
+  .proof-item {
+    background: #fff;
+    padding: 32px 24px;
+  }
+  .proof-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--gray-800);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    line-height: 1;
+  }
+  .proof-desc {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* AUDIENCE RELEVANCE */
+  .audience-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .audience-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .audience-headline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    line-height: 1.15;
+    margin-bottom: 40px;
+  }
+  .audience-tabs {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 32px;
+    background: rgba(0,0,0,0.06);
+    border-radius: 980px;
+    padding: 4px;
+    width: fit-content;
+  }
+  .audience-tab {
+    font-size: 13px;
+    font-weight: 400;
+    padding: 8px 20px;
+    border-radius: 980px;
+    cursor: pointer;
+    color: var(--gray-400);
+    transition: all 0.2s;
+    background: transparent;
+    border: none;
+    white-space: nowrap;
+  }
+  .audience-tab.active { background: var(--gray-800); color: #fff; }
+  .audience-tab:hover:not(.active) { color: var(--gray-800); }
+  .audience-content { display: none; animation: fadeIn 0.3s ease; }
+  .audience-content.active { display: block; }
+  .audience-panel-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px dashed #bbb;
+  }
+  .audience-panel-main {
+    background: #fff;
+    padding: 44px 40px;
+  }
+  .audience-panel-role {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .audience-panel-headline {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--gray-800);
+    line-height: 1.3;
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+  .audience-panel-body {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .audience-panel-points {
+    background: #f5f5f5;
+    padding: 44px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .audience-point {
+    padding-bottom: 24px;
+    border-bottom: 1px dashed #ddd;
+  }
+  .audience-point:last-child { border-bottom: none; padding-bottom: 0; }
+  .audience-point-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-800);
+    margin-bottom: 6px;
+  }
+  .audience-point-body {
+    font-size: 13px;
+    color: var(--gray-600);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* CLOSING CTA */
+  .cta-inner {
+    max-width: 980px;
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+  .cta-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+  }
+  .cta-headline {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    color: var(--gray-800);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+  .cta-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--gray-600);
+    max-width: 480px;
+    margin: 0 auto 56px;
+    line-height: 1.7;
+  }
+  .cta-paths {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--gray-200);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px dashed #bbb;
+    text-align: left;
+  }
+  .cta-path {
+    background: #fff;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cta-path-label {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+  .cta-path-desc {
+    font-size: 14px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    font-weight: 300;
+    flex: 1;
+  }
+  .cta-path-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--blue);
+    text-decoration: none;
+    margin-top: 8px;
+    display: inline-block;
+  }
+  .cta-path-link:hover { text-decoration: underline; }
+
   /* ============================================
      WIREFRAME / PROTOTYPE MODE
      ============================================ */
@@ -874,6 +1191,16 @@
   .val-card-name { color: #222 !important; }
   .val-card-body { color: #555 !important; }
 
+  /* Film placeholder in wireframe */
+  .hero-film-placeholder { border-color: rgba(255,255,255,0.25) !important; background: rgba(255,255,255,0.03) !important; }
+
+  /* Problem / Proof / Audience / CTA wireframe overrides */
+  #problem, #proof, #audience, #cta { background: #fff !important; }
+  .problem-card, .proof-item, .audience-panel-main, .cta-path { background: #fff !important; }
+  .audience-panel-points { background: #f5f5f5 !important; }
+  .audience-tab.active { background: #333 !important; }
+  .cta-path-link { color: #555 !important; }
+
   /* Footer */
   footer { background: #fff !important; border-top: 1px dashed #bbb !important; }
   .footer-logo { color: #333 !important; }
@@ -887,11 +1214,13 @@
 <nav>
   <div class="nav-logo">BD</div>
   <ul class="nav-links">
+    <li><a href="#problem">The challenge</a></li>
     <li><a href="#shift">Our story</a></li>
     <li><a href="#segments">Segments</a></li>
-    <li><a href="#identity">Identity</a></li>
+    <li><a href="#proof">At scale</a></li>
+    <li><a href="#audience">For you</a></li>
     <li><a href="#values">Values</a></li>
-    <li><a href="#">Investors</a></li>
+    <li><a href="#cta">Contact</a></li>
   </ul>
 </nav>
 
@@ -902,7 +1231,7 @@
   <p class="hero-sub">BD is evolving into a focused medical technology company. We leverage our insights, technology, and expertise to help you succeed and advance patient care with clarity and innovation.</p>
   <a href="#shift" class="hero-cta">Explore the new BD</a>
 
-  <div class="hero-stats">
+<div class="hero-stats">
     <div>
       <div class="hero-stat-num">125+</div>
       <div class="hero-stat-label">Years advancing global health</div>
@@ -924,6 +1253,32 @@
   <div class="hero-scroll-hint">
     <span class="scroll-text">Scroll</span>
     <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PROBLEM SPACE -->
+<section id="problem" style="min-height:auto; background:#fff; padding: 120px 24px; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc;">
+  <div class="problem-inner">
+    <div class="problem-label reveal">The challenge</div>
+    <h2 class="problem-headline reveal reveal-delay-1">Healthcare is under pressure.<br>BD is built for exactly this moment.</h2>
+    <p class="problem-intro reveal reveal-delay-2">The systems that deliver care are being tested by structural forces that won't resolve on their own. BD's focused model exists to address each of them directly.</p>
+    <div class="problem-grid reveal reveal-delay-2">
+      <div class="problem-card">
+        <div class="problem-card-num">01</div>
+        <div class="problem-card-title">Workforce &amp; staffing crises</div>
+        <div class="problem-card-body">Chronic nursing shortages and unsustainable clinical workloads are forcing health systems to do more with less. Technology and intelligent devices are no longer optional — they're essential infrastructure.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">02</div>
+        <div class="problem-card-title">Ageing populations &amp; surging demand</div>
+        <div class="problem-card-body">By 2050, one in six people will be over 65. The volume and complexity of care required — chronic conditions, comorbidities, long-term management — is outpacing the capacity of existing systems.</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card-num">03</div>
+        <div class="problem-card-title">Drug delivery &amp; treatment complexity</div>
+        <div class="problem-card-body">The explosion of biologics, GLP-1 therapies, and precision medicine has transformed what it means to deliver a treatment. Precision delivery systems are now a critical part of clinical outcomes.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1148,6 +1503,36 @@
   </div>
 </section>
 
+<!-- PROOF POINTS -->
+<section id="proof" style="min-height:auto; background:#fff; padding: 100px 24px; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc;">
+  <div class="proof-inner">
+    <div class="proof-label reveal">BD at scale</div>
+    <h2 class="proof-headline reveal reveal-delay-1">The numbers behind the commitment.</h2>
+    <div class="proof-grid reveal reveal-delay-2">
+      <div class="proof-item">
+        <div class="proof-num">70,000+</div>
+        <div class="proof-desc">Products serving clinical need across every care setting globally</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">190+</div>
+        <div class="proof-desc">Countries where BD manufactures, distributes, and supports</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">$2B+</div>
+        <div class="proof-desc">Invested in R&amp;D over the past five years to drive next-generation medtech</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">45,000+</div>
+        <div class="proof-desc">Hospital and health system partners who rely on BD every day</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-num">Top 8</div>
+        <div class="proof-desc">Market leadership positions across key medtech therapeutic categories</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- IDENTITY SECTION -->
 <section id="identity" style="min-height:auto; background: var(--white); color: var(--gray-800); padding: 0;">
   <div class="identity-inner">
@@ -1214,6 +1599,106 @@
   </div>
 </section>
 
+<!-- AUDIENCE RELEVANCE -->
+<section id="audience" style="min-height:auto; background: #efefef; padding: 120px 24px; border-top: 1px dashed #ccc;">
+  <div class="audience-inner">
+    <div class="audience-label reveal">What this means for you</div>
+    <h2 class="audience-headline reveal reveal-delay-1">BD speaks to everyone<br>who shapes healthcare.</h2>
+    <div class="audience-tabs reveal reveal-delay-2">
+      <button class="audience-tab active" onclick="showAudience(0,this)">CXOs &amp; Investors</button>
+      <button class="audience-tab" onclick="showAudience(1,this)">Clinicians</button>
+      <button class="audience-tab" onclick="showAudience(2,this)">Procurement</button>
+      <button class="audience-tab" onclick="showAudience(3,this)">Talent</button>
+    </div>
+
+    <div class="audience-content active" id="aud-0">
+      <div class="audience-panel-grid">
+        <div class="audience-panel-main">
+          <div class="audience-panel-role">CXOs &amp; Investors</div>
+          <div class="audience-panel-headline">A simpler, sharper BD. Built to outperform.</div>
+          <div class="audience-panel-body">The separation creates a pure-play medtech company with concentrated capital, cleaner decision-making, and a recurring revenue model anchored by installed-base devices. Four focused segments. One financial story. A durable platform for value creation.</div>
+        </div>
+        <div class="audience-panel-points">
+          <div class="audience-point"><div class="audience-point-title">Pure-play focus</div><div class="audience-point-body">Capital directed at highest-growth medtech verticals — no conglomerate drag</div></div>
+          <div class="audience-point"><div class="audience-point-title">Recurring revenue model</div><div class="audience-point-body">Installed devices drive high-margin, predictable consumable revenue</div></div>
+          <div class="audience-point"><div class="audience-point-title">Strategic clarity</div><div class="audience-point-body">Four segments, each with defensible market positions and structural tailwinds</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud-1">
+      <div class="audience-panel-grid">
+        <div class="audience-panel-main">
+          <div class="audience-panel-role">Clinicians</div>
+          <div class="audience-panel-headline">Devices designed around how you work.</div>
+          <div class="audience-panel-body">BD's products are in operating theatres, wards, and clinics every day. As a focused medtech company, investment in clinical innovation accelerates — and the feedback loop between clinical insight and product development gets shorter. Fewer distractions. Better devices.</div>
+        </div>
+        <div class="audience-panel-points">
+          <div class="audience-point"><div class="audience-point-title">Clinical co-creation</div><div class="audience-point-body">Products shaped with clinicians, not just for them</div></div>
+          <div class="audience-point"><div class="audience-point-title">Outcomes-led innovation</div><div class="audience-point-body">R&amp;D investment tied to real-world clinical outcomes</div></div>
+          <div class="audience-point"><div class="audience-point-title">AI-powered monitoring</div><div class="audience-point-body">Connected care systems that reduce burden and improve patient safety</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud-2">
+      <div class="audience-panel-grid">
+        <div class="audience-panel-main">
+          <div class="audience-panel-role">Procurement</div>
+          <div class="audience-panel-headline">One partner. Global scale. Supply chain you can count on.</div>
+          <div class="audience-panel-body">BD's focused model means clearer product portfolios, more transparent partnerships, and supply chains built for resilience. 70,000+ products. 190+ countries. A partner who understands that healthcare procurement isn't just commercial — it's clinical.</div>
+        </div>
+        <div class="audience-panel-points">
+          <div class="audience-point"><div class="audience-point-title">Global supply resilience</div><div class="audience-point-body">Manufacturing footprint across 190+ countries reduces single-point risk</div></div>
+          <div class="audience-point"><div class="audience-point-title">Portfolio clarity</div><div class="audience-point-body">Focused segments mean simpler, more navigable product catalogues</div></div>
+          <div class="audience-point"><div class="audience-point-title">Long-term partnership</div><div class="audience-point-body">We operate as a co-creator — not a transactional supplier</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud-3">
+      <div class="audience-panel-grid">
+        <div class="audience-panel-main">
+          <div class="audience-panel-role">Talent</div>
+          <div class="audience-panel-headline">A company that has decided who it is.</div>
+          <div class="audience-panel-body">The new BD is a company with a clear identity and a bold direction. That matters for the people who build it. Focused strategy means more meaningful work, faster decisions, and a culture built on curiosity, courage, and co-creation. We know what we're here to do.</div>
+        </div>
+        <div class="audience-panel-points">
+          <div class="audience-point"><div class="audience-point-title">Clear purpose</div><div class="audience-point-body">A focused mission that connects daily work to real clinical impact</div></div>
+          <div class="audience-point"><div class="audience-point-title">Innovation culture</div><div class="audience-point-body">R&amp;D investment and bold decision-making at every level</div></div>
+          <div class="audience-point"><div class="audience-point-title">Career trajectory</div><div class="audience-point-body">A growing, focused company with meaningful leadership opportunity</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING CTA -->
+<section id="cta" style="min-height:auto; background:#fff; padding: 100px 24px; border-top: 1px dashed #ccc; border-bottom: 1px dashed #ccc;">
+  <div class="cta-inner">
+    <div class="cta-label reveal">Next steps</div>
+    <h2 class="cta-headline reveal reveal-delay-1">Ready to explore<br>the new BD?</h2>
+    <p class="cta-sub reveal reveal-delay-2">Whether you're an investor, a clinical partner, or exploring what BD can do for your organisation — there's a place to start.</p>
+    <div class="cta-paths reveal reveal-delay-2">
+      <div class="cta-path">
+        <div class="cta-path-label">Investors</div>
+        <div class="cta-path-desc">Explore the financial story behind the new BD — strategy, structure, and growth model.</div>
+        <a href="#" class="cta-path-link">Investor relations →</a>
+      </div>
+      <div class="cta-path">
+        <div class="cta-path-label">Solutions</div>
+        <div class="cta-path-desc">Find the segment, product, or technology most relevant to your clinical or operational challenge.</div>
+        <a href="#segments" class="cta-path-link">Explore segments →</a>
+      </div>
+      <div class="cta-path">
+        <div class="cta-path-label">Contact</div>
+        <div class="cta-path-desc">Talk to a BD specialist — for partnerships, procurement, media, or general enquiries.</div>
+        <a href="#" class="cta-path-link">Get in touch →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-top">
@@ -1249,6 +1734,13 @@
 </footer>
 
 <script>
+  function showAudience(idx, btn) {
+    document.querySelectorAll('.audience-content').forEach(function(el){ el.classList.remove('active'); });
+    document.querySelectorAll('.audience-tab').forEach(function(el){ el.classList.remove('active'); });
+    document.getElementById('aud-'+idx).classList.add('active');
+    btn.classList.add('active');
+  }
+
   function showSeg(idx, btn) {
     document.querySelectorAll('.seg-content').forEach(function(el){ el.classList.remove('active'); });
     document.querySelectorAll('.seg-tab').forEach(function(el){ el.classList.remove('active'); });
